@@ -14,8 +14,6 @@
 
 #define WIFI_CONNECTION_TIMEOUT 10000 // 10 seconds
 
-#define AP_PASSWORD "12345678"
-
 #define TIME_UPDATE_INTERVAL 1000
 
 typedef enum
@@ -58,7 +56,7 @@ void setup()
     {
       Serial.println("Couldn't connect to wifi network");
       WiFi.mode(WIFI_AP);
-      WiFi.softAP(prefs.ssid, prefs.password);
+      WiFi.softAP(prefs.hostname, prefs.password);
     }
     else
     {

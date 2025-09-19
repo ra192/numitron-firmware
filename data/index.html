@@ -23,9 +23,9 @@
                 <div class="accordion-body">
                     <form id="time_form" action="/save-time" method="POST">
                         <div class="row mb-3">
-                            <label for="time_zone" class="col-sm-2 col-form-label">Time zone</label>
+                            <label for="timezone" class="col-sm-2 col-form-label">Time zone</label>
                             <div class="col-sm-4">
-                                <select class="form-select" id="time_zone" name="time_zone">
+                                <select class="form-select" id="timezone" name="timezone">
                                     <option value="UTC10">(GMT-10:00) Hawaii</option>
                                     <option value="AKST9AKDT,M3.2.0,M11.1.0">(GMT-09:00) Alaska</option>
                                     <option value="PST8PDT,M3.2.0,M11.1.0">(GMT-09:00) Vancouver</option>
@@ -217,7 +217,7 @@
                         <div class="row mb-3">
                             <label for="ssid" class="col-sm-2 col-form-label">ssid</label>
                             <div class="col-sm-4">
-                                <select class="form-select" id="ssid" name="ssid"></select>
+                                <input class="form-control" id="ssid" name="ssid"></select>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -404,7 +404,7 @@
 
         fetch('/get-time').then(response => response.json()).then(data => {
             document.getElementById('24h_format').value = data['24h_format'];
-            document.getElementById("time_zone").value = data['time_zone'];
+            document.getElementById("timezone").value = data['timezone'];
             
         });
 
@@ -472,16 +472,16 @@
 
         fetch('/get-network-settings').then(response => response.json()).then(data => {
             wifiMode.value = data['wifi_mode'];
-            var ssidList = data['ssid_list'];
+            // var ssidList = data['ssid_list'];
 
-            ssidList.forEach(ssidItm => {
-                var option = document.createElement('option');
+            // ssidList.forEach(ssidItm => {
+            //    var option = document.createElement('option');
 
-                option.text = ssidItm;
-                option.value = ssidItm;
+            //    option.text = ssidItm;
+            //    option.value = ssidItm;
 
-                ssidElem.appendChild(option);
-            });
+            //    ssidElem.appendChild(option);
+            //});
 
             ssidElem.value = data['ssid']
             document.getElementById('hostname').value = data['hostname'];

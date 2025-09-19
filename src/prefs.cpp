@@ -18,7 +18,7 @@ void loadPreferences(Preferences &prefs)
         return;
     }
 
-    prefs.wifiMode = doc["wifiMode"] | 0;
+    prefs.wifiMode = doc["wifiMode"] | 1;
     strlcpy(prefs.hostname, doc["hostname"] | "pulsar-clock", sizeof(prefs.hostname));
     strlcpy(prefs.ssid, doc["ssid"] | "", sizeof(prefs.ssid));
     strlcpy(prefs.password, doc["password"] | "12345678", sizeof(prefs.password));

@@ -11,13 +11,13 @@ void reqRoot(AsyncWebServerRequest *request)
 
 void reqGetNetworkSettings(AsyncWebServerRequest *request)
 {
-    StaticJsonDocument<1024> doc;
+    JsonDocument doc;
 
     doc["wifi_mode"] = prefs.wifiMode;
     doc["ssid"] = prefs.ssid;
     doc["hostname"] = prefs.hostname;
 
-    JsonArray ssidList = doc.createNestedArray("ssid_list");
+    JsonArray ssidList = doc["ssid_list"].to<JsonArray>();
     uint8_t netCnt = WiFi.scanNetworks();
     for (int i = 0; i < netCnt; i++)
     {
@@ -56,7 +56,7 @@ void reqSaveNetworkSettings(AsyncWebServerRequest *request)
 
 void reqGetTime(AsyncWebServerRequest *request)
 {
-    StaticJsonDocument<256> doc;
+    JsonDocument doc;
     doc["timezone"] = prefs.timezone;
 
     String jsonStr;
