@@ -5,8 +5,6 @@
 #include <ESPAsyncTCP.h>
 #include <ESPAsyncWebServer.h>
 
-void reqRoot(AsyncWebServerRequest *request);
-
 void reqGetNetworkSettings(AsyncWebServerRequest *request);
 
 void reqSaveNetworkSettings(AsyncWebServerRequest *request);

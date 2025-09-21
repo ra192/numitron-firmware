@@ -204,7 +204,7 @@
             </h2>
             <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordion">
                 <div class="accordion-body">
-                    <form action="/save-wifi-creds" method="POST">
+                    <form action="/save-network-settings" method="POST">
                         <div class="row mb-3">
                             <label for="wifi_mode" class="col-sm-2 col-form-label">mode</label>
                             <div class="col-sm-4">
@@ -217,7 +217,7 @@
                         <div class="row mb-3">
                             <label for="ssid" class="col-sm-2 col-form-label">ssid</label>
                             <div class="col-sm-4">
-                                <input class="form-control" id="ssid" name="ssid"></select>
+                                <select class="form-select" id="ssid" name="ssid"></select>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -465,23 +465,24 @@
         });
 
         fetch('/get-led-settings').then(response => response.json()).then(data => {
-            document.getElementById('led_brightness').value = data['led_brightness'];            ledMode.value = data['led_mode'];
+            document.getElementById('led_brightness').value = data['led_brightness'];
+            ledMode.value = data['led_mode'];
             ledColor.value = data['led_color'];
             ledColorUpdateAttr(ledMode.value);
         });
 
         fetch('/get-network-settings').then(response => response.json()).then(data => {
             wifiMode.value = data['wifi_mode'];
-            // var ssidList = data['ssid_list'];
+            var ssidList = data['ssid_list'];
 
-            // ssidList.forEach(ssidItm => {
-            //    var option = document.createElement('option');
+            ssidList.forEach(ssidItm => {
+               var option = document.createElement('option');
 
-            //    option.text = ssidItm;
-            //    option.value = ssidItm;
+               option.text = ssidItm;
+               option.value = ssidItm;
 
-            //    ssidElem.appendChild(option);
-            //});
+               ssidElem.appendChild(option);
+            });
 
             ssidElem.value = data['ssid']
             document.getElementById('hostname').value = data['hostname'];

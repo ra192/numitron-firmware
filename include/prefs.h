@@ -12,6 +12,8 @@ struct Preferences {
     char timezone[64];
 };
 
+extern uint8_t wifiNetworksCount;
+
 void loadPreferences(Preferences &prefs);
 
 void savePreferences(const Preferences &prefs);

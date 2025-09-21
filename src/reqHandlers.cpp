@@ -4,11 +4,6 @@
 #include <ArduinoJson.h>
 #include <prefs.h>
 
-void reqRoot(AsyncWebServerRequest *request)
-{
-    request->redirect("/index.html");
-}
-
 void reqGetNetworkSettings(AsyncWebServerRequest *request)
 {
     JsonDocument doc;
@@ -18,8 +13,8 @@ void reqGetNetworkSettings(AsyncWebServerRequest *request)
     doc["hostname"] = prefs.hostname;
 
     JsonArray ssidList = doc["ssid_list"].to<JsonArray>();
-    uint8_t netCnt = WiFi.scanNetworks();
-    for (int i = 0; i < netCnt; i++)
+    
+    for (int i = 0; i < wifiNetworksCount; i++)
     {
         ssidList.add(WiFi.SSID(i));
     }

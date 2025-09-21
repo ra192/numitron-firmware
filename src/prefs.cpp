@@ -1,6 +1,8 @@
 #include <prefs.h>
 #include <LittleFS.h>
 
+uint8_t wifiNetworksCount;
+
 void loadPreferences(Preferences &prefs)
 {
     File file = LittleFS.open("/prefs.json", "r");
